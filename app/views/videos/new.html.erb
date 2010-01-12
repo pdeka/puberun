@@ -1,0 +1,63 @@
+<% content_for :right do %>
+    <div id="hide-sidebar1"></div>
+<% end %>
+
+
+<div class="music">
+    <h1 class="title">Videos</h1>
+
+    <% if logged_in? %>
+        <% form_for(@video) do |f| %>
+            <%= f.error_messages %>
+
+            <div class="entry">
+                <p>
+                    <span class="textboxhead">Title</span>
+                    <br>
+                    <%= f.text_area :title, :rows => 1, :cols => 80 %>
+                </p>
+
+                <p>
+                    <span class="textboxhead">Copy YouTube 'URL link' here (or copy the 'Embed link')</span>
+                    <br/>
+                    <span style="font-size:12px">(eg. http://www.youtube.com/watch?v=4YmwJpnor6o)</span>
+                    </span>
+
+                    <br>
+                    <%= f.text_area :link, :rows => 1, :cols => 80 %>
+
+                <p>
+                    <%= f.submit "Create" %>
+                </p>
+
+            </div>
+        <% end %>
+    <% end %>
+
+    <div class="tags">
+        <b style="font-size: 14px"><%= will_paginate @videos %></b>
+    </div>
+    <br/>
+
+    <% for showVideo in @videos %>
+        <h2 class="title"><%= showVideo.title %></h2>
+
+        <div class="hr">
+            <%= showVideo.show_created_by.show_display_name %> at <%= showVideo.created_at %>&nbsp;&nbsp;&nbsp;
+            <%if logged_in?%>
+                <%= link_to 'Destroy', showVideo, :confirm => 'Are you sure?', :method => :delete %>
+            <%end%>    
+        </div>
+
+        <div class="photo">
+            <p><%= showVideo.link %></p>
+        </div>
+
+    <% end %>
+
+    <div class="tags">
+        <b style="font-size: 14px"><%= will_paginate @videos %></b>
+    </div>
+
+</div>
+

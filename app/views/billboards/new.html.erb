@@ -1,0 +1,23 @@
+<h1>New billboard</h1>
+
+<span class="error"><%= error_messages_for :billboard %></span>
+
+<% form_for(@billboard) do |f| %>
+  <p>
+    <b>Title</b><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <b>Position</b><br />
+    <%= f.text_field :position, :size => 5 %>
+  </p>
+  <p>
+    <b>Body</b><br />
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', billboards_path %>

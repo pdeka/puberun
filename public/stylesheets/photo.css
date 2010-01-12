@@ -1,0 +1,82 @@
+.photo {
+}
+
+.photo .title {
+	margin: 0;
+	font-weight: normal;
+}
+
+.photo h1.title {
+	padding: 0px 0px  20px 15px;
+	height: 10px;
+	font-size: 30px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.photo .photonote {
+	padding: 0px 0px  0px 0px;
+	height: 10px;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.photo h2.title {
+	padding: 0px 0px  0px 15px;
+	height: 30px;
+	font-size: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.photo .entry {
+	padding: 0 25px 20px 15px;
+}
+
+.photo .actualphoto {
+	padding: 10px 25px 5px 25px;
+}
+
+.photo .slideshowholder {
+	padding: 10px 0px 50px 0px;
+    border:none;
+}
+
+.photo .slideshow {
+    border:none;
+    text-align:center;
+    margin: 0;
+    background: #F2F2F2;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.photo .tags {
+margin: 0;
+background: #F2F2F2;
+padding: 3px 10px 3px 15px;
+text-transform: uppercase;
+font-size: 9px;
+font-family: Arial, Helvetica, sans-serif;
+font-weight: bold;
+}
+
+.photo .hr {
+border: none;
+background-color: #B4CBDF;
+color: #B4CBDF;
+height: 1px;
+padding: 0px 10px 0px 15px;
+}
+
+.photo .links a, .photo .tags a {
+	border: none;
+}
+
+.photo .textboxhead {
+	margin: 0;
+	background: #FFFFFF;
+	padding: 0px 0px 0px 0px;
+	font-size: 15px;
+	font-family: Arial, Helvetica, sans-serif;
+}

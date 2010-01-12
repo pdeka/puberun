@@ -1,0 +1,41 @@
+<% content_for :right do %>
+    <p>
+    <h2 style="text-transform: lowercase"><%= 'Help!'[:beast_sidebar_title] %></h2>
+    <br>
+    &bull;&nbsp;Click on the user id to view user profile.
+    </p>
+
+<% end -%>
+
+<h1 style="margin-top:0;"><%= 'Users'[:users_title] %></h1>
+<p class="subtitle">
+  <%#= user_count %> 
+  <%= active_user_count %> 
+  <%#= lurking_user_count %>
+</p>
+
+<%= pagination @users %>
+
+<table border="0" cellspacing="0" cellpadding="0" class="forums">
+  <tr>
+    <th class="la" width="88%"><%= 'Login'[:name_or_login] %></th>
+    <th><%= 'Website'[:website_title] %></th>
+  </tr>
+<% @users.each do |user|-%>  
+  <tr>
+    <td><%= link_to h(user.login), user, :class => (user.admin? ? "admin" : nil) %>
+      <span style="color:#666">
+      <%= "(admin)"[:admin_in_parens] if user.admin? %>
+      </span>
+      </td>
+    <td class="la">
+      <% unless user.website.blank? %>
+      <%= link_to(user.website.gsub("http://",""), "http://" + user.website.gsub("http://","")) %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%= next_page @users %>
+<%= pagination @users %>

@@ -1,0 +1,67 @@
+.feed {
+}
+
+.feed .title {
+	margin: 0;
+	font-weight: normal;
+}
+
+.feed h1.title {
+	padding: 0px 0px  20px 15px;
+	height: 10px;
+	font-size: 30px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.feed .feednote {
+	padding: 0px 0px  0px 0px;
+	height: 10px;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.feed h2.title {
+	padding: 0px 0px  0px 15px;
+	height: 30px;
+	font-size: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.feed .entry {
+	padding: 0 25px 20px 15px;
+}
+
+.feed .photo {
+	padding: 10px 25px 50px 25px;
+}
+
+.feed .tags {
+	margin: 0;
+	background: #F2F2F2;
+	padding: 3px 10px 3px 15px;
+	text-transform: uppercase;
+	font-size: 9px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+.feed .hr {
+  border: none;
+  background-color: #B4CBDF;
+  color: #B4CBDF;
+  height: 1px;
+  padding: 0px 10px 0px 15px;
+}
+
+.feed .links a, .feed .tags a {
+	border: none;
+}
+
+.feed .textboxhead {
+	margin: 0;
+	background: #FFFFFF;
+	padding: 0px 0px 0px 0px;
+	font-size: 15px;
+	font-family: Arial, Helvetica, sans-serif;
+}

@@ -1,0 +1,56 @@
+<% content_for :right do %>
+    <h2 style="text-transform: lowercase"><%= link_to 'Members!'[:users_title], users_path %></h2>
+
+    <p>
+        <% if logged_in? -%>
+            <% for user in @users %>
+                <a href="/users/<%=user.login%>" rel="htmltooltip" ><%= avatar_for user, 30 %> </a>
+            <% end %>
+    
+            <% for user in @users %>
+                <div class="htmltooltip"><%=user.show_display_name%></div>
+            <% end %>
+        <%else -%>
+            We presently have <%=@users.length%> members in the community. Please
+            <a href="http://puberun.org.au/signup" >sign up</a> if you want to join us
+           or <a href="http://puberun.org.au/login" >log in</a> if you already have an account. 
+
+        <%end -%>
+        <br/>
+        <%= link_to 'Click here for a full list!'[:users_title], users_path %>
+    </p>
+
+
+    <h2 style="text-transform: lowercase">Help!</h2>
+      <p>
+
+      The right panel in all pages will provide you with valuable hints on how to use this site.
+      You can edit content on the site. Sign up and login in order to do so.
+      <br>
+      Mail <a href="mailto:dakghar@puberun.org.au">dakghar@puberun.org.au</a> for support. Alternatively, call +61 - 420984257.
+      <br>
+      <br>
+
+    </p>
+
+
+<% end %>
+
+
+<% for note in @notes %>
+    <div class="post">
+            <h1 class="title"><%= note.title %></h1>
+            <div class="entry">
+                    <p><%= note.body %></p>
+            </div>
+                <% if logged_in? -%>
+                <p class="tags"><%= link_to 'Edit', edit_note_path(note) %> |
+                  <%= link_to 'Destroy', note, :confirm => 'Are you sure?', :method => :delete %> |
+                  <%= link_to 'New', new_note_path %>
+                </p>
+                <%end -%>
+    </div>
+
+<% end %>
+
+

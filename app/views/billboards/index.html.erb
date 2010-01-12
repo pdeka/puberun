@@ -1,0 +1,21 @@
+<% content_for :right do %>
+    <div id="hide-sidebar1"></div>
+<% end %>
+
+
+<% for billboard in @billboards %>
+    <div class="music" >
+            <h1 class="title" ><%= billboard.title %></h1>
+            <div class="entry" >
+                    <p><%= billboard.body %></p>
+            </div>
+                <% if logged_in? -%>
+                <p class="tags"><%= link_to 'Edit', edit_billboard_path(billboard) %> |
+                  <%= link_to 'Destroy', billboard, :confirm => 'Are you sure?', :method => :delete %> |
+                  <%= link_to 'New', new_billboard_path %></p>
+                <%end -%>    
+    </div>
+
+<% end %>
+
+

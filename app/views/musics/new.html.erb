@@ -1,0 +1,96 @@
+<% content_for :right do %>
+    <h2 style="text-transform: lowercase">Help!</h2>
+
+    <h3>How do I embed an audio link?</h3>
+    Start by logging in to puberun. Go to <a href="http://share.ovi.com/uploadmedia" target="_blank">Ovi media share</a>, Nokia's media sharing site.
+    Log in using puberun's user id and password (mail dakghar@puberun.org.au).
+    Alternatively, <a href="https://account.nokia.com/acct/register?serviceId=Ovishare" target="_blank"> register with Ovi </a>
+    and use your own account. It's very easy to register!
+    Upload songs or tracks into a <b style="font-size:14px" >public album</b>.
+    Cut and paste the url links for the songs or tracks here.
+    Trust us, <a href="http://share.ovi.com/uploadmedia" target="_blank">Ovi </a> is very simple and reliable!
+
+    <h3>Why are mp3s not hosted in-house?</h3>
+    Question
+    <a href="http://www.make-your-own-dance-and-techno-songs.com/best-mp3-hosting.html" target="_blank">answered
+        here</a>, but we are still hopeful.
+    <br>
+
+<% end %>
+
+
+<div class="music">
+    <h1 class="title">Music</h1>
+
+    <% if logged_in? %>
+        <% form_for(@music) do |f| %>
+            <%= f.error_messages %>
+
+
+            <div class="entry">
+                <p>
+                    <span class="textboxhead">Title</span>
+                    <br>
+                    <%= f.text_area :title, :rows => 1, :cols => 80 %>
+                </p>
+
+                <p>
+                    <span class="textboxhead">Copy embed link here                    </span>
+<br>
+
+                        <span style="font-size:12px">
+                            If <a href="http://share.ovi.com/uploadmedia" target="_blank">Ovi</a>, copy the
+                            <a href="http://share.ovi.com/uploadmedia" target="_blank">Ovi</a> url link.
+                            <br> (eg.&nbsp;http://share.ovi.com/media/moni.public/moni.10002)
+                        </span>
+                    <%= f.text_area :link, :rows => 1, :cols => 80 %>
+                </p>
+
+                <p>
+                    Songs&nbsp;<%= f.radio_button :music_type, "Song", :checked => true %>&nbsp;&nbsp;Sound
+                    Track&nbsp;<%= f.radio_button :music_type, "Sound Track" %>
+                </p>
+
+                <p>
+                    <%= f.submit " Create" %>
+                </p>
+
+            </div>
+        <% end %>
+    <% end %>
+
+
+
+    <div class="filter">
+        <a href="/musics/new">All</a>&nbsp;|&nbsp;<a href="/musics/new?music_type=Song">Song</a>&nbsp;|&nbsp;<a href="/musics/new?music_type=Sound Track">
+      Karaoke</a>
+    </div>
+
+    <div class="tags">
+        <b style="font-size: 14px; "><%= will_paginate @musics %></b>
+    </div>
+    <br/>
+
+    <% for showMusic in @musics %>
+        <h2 class="title"><%= showMusic.title %></h2>
+
+        <div class="hr">
+            <%= showMusic.show_created_by.show_display_name %> at <%= showMusic.created_at %>&nbsp;&nbsp;&nbsp;
+            <% if logged_in? %>
+                <%= link_to 'Destroy', showMusic, :confirm => 'Are you sure?', :method => :delete %>
+            <% end %>
+        </div>
+
+        <div class="photo">
+            <p><%= showMusic.link %></p>
+        </div>
+
+    <% end %>
+
+    <div class="tags">
+        <b style="font-size: 14px; "><%= will_paginate @musics %></b>
+    </div>
+
+
+</div>
+

@@ -1,0 +1,95 @@
+<% content_for :right do %>
+    <h2 style="text-transform: lowercase">Help!</h2>
+    <br>
+
+    <h3>How do I add Flickr photos links here?</h3>
+    &bull;&nbsp;Upload your photos to any <a href="http://flickr.com" target="_blank">Flickr</a> account.
+    <br>
+    &bull;&nbsp;Go to the Flickr 'Set' in your browser.
+    <br>
+    &bull;&nbsp;Copy the link from the address bar into the box provided on this page.
+    <br>
+    <br>
+
+    <h3>How do I add Picasa photos link here?</h3>
+    &bull;&nbsp;Sync your photos from your Desktop
+    <a href="http://picasa.google.com" target="_blank">Picasa</a> application
+    to a <a href="http://picasa.google.com" target="_blank">Picasa</a> Web Album.
+    <br>
+    &bull;&nbsp;Go to your <a href="http://picasa.google.com" target="_blank">Picasa</a>
+    'Web Album' in your browser.
+    <br>
+    &bull;&nbsp;Copy the link from the address bar into the box provided on this page.
+    <br>
+    <br>
+    <h3>Note!</h3>
+    If the embed does not work, send
+    <a href="mailto:dakghar@puberun.org.au">dakghar@puberun.org.au</a> a mail with the link and we will add it for you.
+
+<% end %>
+
+
+<div class="photo">
+    <h1 class="title">Member photos</h1>
+
+    <% form_for(@photo) do |f| %>
+        <%= f.error_messages %>
+
+        <div class="entry">
+            <p>
+                <span class="textboxhead">Title</span>
+                <br>
+                <%= f.text_area :title, :rows => 1, :cols => 80 %>
+            </p>
+
+            <p>
+                <span class="textboxhead">Copy Flickr 'Set' link or Picasa 'Album' link
+                <br/>
+                <span style="font-size:12px">(eg. http://flickr.com/photos/junku-newcleus/sets/1487128/ <br>
+                    or http://picasaweb.google.com/familie.schilder/Artis)</span>     
+                </span>
+                <br>
+                <%= f.text_area :link, :rows => 1, :cols => 80 %>
+
+            <p>
+                <%= f.submit "Create" %>
+            </p>
+
+        </div>
+    <% end %>
+
+    <div class="tags">
+        <b style="font-size: 14px; "><%= will_paginate @photos %></b>
+    </div>
+    <br/>
+
+    <% for showPhoto in @photos %>
+        <h2 class="title"><%= showPhoto.title %></h2>
+
+        <div class="hr">
+            <%= showPhoto.show_created_by.show_display_name %> at <%= showPhoto.created_at %>&nbsp;&nbsp;&nbsp;
+            <%= link_to 'Destroy', showPhoto, :confirm => 'Are you sure?', :method => :delete %>
+        </div>
+
+        <div class="actualphoto">
+            <p><%= showPhoto.link %></p>
+        </div>
+
+        <div class="slideshowholder">
+            <div class="slideshow">
+                <% if showPhoto.slideshow == "#" || showPhoto.slideshow == "" %>
+                    No slideshow available. Please ask photo owner to paste a Flickr or Picassa link.
+                <% else %>
+                    <a href="<%= showPhoto.slideshow %>" target="_blank">Click here for a fullscreen slideshow.</a>
+            <% end %>
+            </div>
+        </div>
+
+
+    <% end %>
+
+    <div class="tags">
+        <b style="font-size: 14px; "><%= will_paginate @photos %></b>
+    </div>
+
+</div>

@@ -1,0 +1,27 @@
+<% content_for :right do %>
+
+<h2 style="text-transform:lowercase">help!</h2>
+  <p>
+    <h3>General profile</h3>
+    <br>&bull;&nbsp;To have your very own avatar displayed on this site, upload an avatar image.
+    <br>
+
+  </p>
+
+<% end %>
+
+<h1><%= avatar_for @user, 80 %><%=h @user.show_display_name %> </h1>
+
+<span class="error"><%= error_messages_for :user %></span>
+
+<% form_for :user, :url => user_path(@user), :html => { :method => :put } do |f| -%>
+  <%= render :partial => "settings", :object => f %>
+  <p><%= submit_tag 'Change e-mail or password'[:change_email_or_password], :or => link_to( "cancel"[], "/") %></p>
+<% end -%>
+
+<br />
+
+<% form_for :user, :url => user_path(@user), :html => { :method => :put, :multipart => true } do |f| -%>
+  <%= render :partial => "contact_info", :locals => { :settings => f } %>
+  <p><%= submit_tag 'Update Profile'[], :or => link_to( "cancel"[], "/") %></p>
+<% end -%>

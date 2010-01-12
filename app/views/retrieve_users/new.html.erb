@@ -1,0 +1,29 @@
+<% content_for :right do %>
+    <div id="hide-sidebar1"></div>
+<% end %>
+
+<div class="feed">
+    <h1 class="title">Retrieve your username and password</h1>
+
+    <% form_for(@retrieve_user) do |f| %>
+        <%= f.error_messages %>
+
+        <div class="entry">
+            <p>
+                <span class="textboxhead">Type in the email address you signed up with</span>
+                <br>
+                <%= f.text_field :email, :size => 50 %>
+            </p>
+
+            <%= f.submit "Send email" %>
+
+            </p>
+            <p>
+                <span class="textboxhead">Note! that some email clients mark address' like dakghar@puberun.org.au as spam. Please look in your spam folder if you do not see your mail in your inbox.</span>
+            </p>
+
+        </div>
+    <% end %>
+
+</div>
+

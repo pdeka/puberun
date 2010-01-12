@@ -1,0 +1,95 @@
+#menu {
+    height: 47px;
+    width: 976px;
+    position: absolute;
+}
+
+#menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    line-height: normal;
+
+    width: 100px;
+    float: left;
+}
+
+#menu li {
+    float: left;
+    padding: 15px 30px 16px 30px;
+    letter-spacing: -1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    border-left: #03748c 1px solid;
+    color: #FFFFFF;
+    background: #0386a2;
+    
+}
+
+#menu ul .top {
+    float: left;
+    padding: 15px 30px 16px 15px;
+    letter-spacing: -1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    border-left: #03748c 1px solid;
+    color: #FFFFFF;
+    background: #0386a2;
+}
+
+
+#menu a {
+    float: left;
+    padding: 15px 20px 16px 20px;
+    letter-spacing: -1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    border-left: #03748c 1px solid;
+    color: #FFFFFF;
+    background: #0386a2;
+}
+
+#menu ul .item {
+    display: none;
+}
+
+#menu ul:hover .item {
+    display: block;
+    background: #03748c;
+    padding: 1px 1px 0px 0px;
+    margin: 0px;
+}
+
+#menu ul:hover .item a {
+    text-decoration: none;
+    float: left;
+    padding: 15px 15px 16px 15px;
+    letter-spacing: -1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    border-left: #03748c 1px solid;
+    color: #FFFFFF;
+    background: #0386a2;
+    width:100px;
+}
+
+#menu ul:hover .item a:hover {
+    color: #999;
+}
+
+.clear {
+    clear: both;
+    height: 10px;
+}

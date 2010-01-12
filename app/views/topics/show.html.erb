@@ -1,0 +1,129 @@
+<% content_for :right do %>
+    <div id="hide-sidebar1"></div>
+<% end %>
+
+
+<% @page_title = @topic.title %>
+<% @monitoring = logged_in? && !Monitorship.count(:id, :conditions => ['user_id = ? and topic_id = ? and active = ?', current_user.id, @topic.id, true]).zero? %>
+
+<% if false#logged_in?  %>
+
+    <% form_tag monitorship_path(@forum, @topic), :style => 'margin-top:0em; float:right;' do -%>
+        <div>
+            <input id="monitor_checkbox" type="checkbox" <%= "checked='checked'" if @monitoring %>
+                   onclick="if (this.checked) {<%= remote_function :url => monitorship_path(@forum, @topic) %>} else {<%= remote_function :url => monitorship_path(@forum, @topic), :method => :delete %>}"/>
+            <label id="monitor_label" for="monitor_checkbox"><%= @monitoring ? 'Monitoring topic'[] : 'Monitor topic'[] %></label>
+            <%= hidden_field_tag '_method', 'delete' if @monitoring %>
+            <%= submit_tag :Set, :id => 'monitor_submit' %>
+        </div>
+    <% end -%>
+
+<% end -%>
+
+<div class="post">
+    <div class="entry">
+
+
+        <h1 id="topic-title" style="margin-top:0.5em;"<%= %( onmouseover="$('topic_mod').show();" onmouseout="$('topic_mod').hide();") if logged_in? %>>
+
+            <%= h @topic.title %>
+            <% if @topic.locked? %>
+                <span>(<%= 'locked'[] %>)</span>
+            <% end %>
+            <% if logged_in? %>
+    <span style="display:none;" id="topic_mod">
+      <% if @topic.editable_by?(current_user) -%>
+        <%= link_to('edit'[], edit_forum_topic_path(@forum, @topic), :class => "utility") %> |
+            <%= link_to('delete'[], forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => 'Delete this topic forever?'[:delete_topic_conf]) %>
+      <% end -%>
+    </span>
+            <% end %>
+        </h1>
+
+        <%= '{count} member voice(s)'[(count=@topic.voices.size)==1 ? :voice_count : :voices_count, number_with_delimiter(count)] %>
+        ,
+        <%= '{count} post(s) in total'[(count=@topic.posts.size)==1 ? :post_count : :posts_count, number_with_delimiter(count)] %>
+        <br/>
+
+
+        <% if logged_in? %>
+            <div class="container">
+                <%= content_tag 'p', h(flash[:bad_reply]), :class => 'notice' if flash[:bad_reply] %>
+                <% form_for :post, :url => forum_topic_posts_path(@forum, @topic, :page => @topic.last_page) do |f| -%>
+                    <%= f.text_area :body, :rows => 5, :cols => 93 %>
+                    <br/>
+                    <br/>
+                    <%= submit_tag " Save Reply" %>
+                <% end -%>
+            </div>
+        <% end %>
+
+        <br/>
+
+
+        <%= pagination @posts %>
+
+
+        <table border="0" cellspacing="0" cellpadding="0" class="posts wide">
+            <% for post in @posts do -%>
+
+
+                <tr id="<%= dom_id post %>-row">
+                    <td>
+
+                        <div class="tablediv">
+                            <a href="/users/<%= post.user.login %>"><%= avatar_for(post.user, 60)-%></a>
+                        </div>
+
+                    </td>
+                    <td>
+
+                        <div class="tabledivleft">
+
+                            <% if post.user.active? %>
+                                <%= post.body_html %>
+                            <% else %>
+                                <p>
+                                    <% "(This post has been removed)"[:suspended_user_post] %></p>
+                            <% end %>
+
+                            <br/>
+
+                            <abbr class="updated" title="<%= post.created_at.xmlschema %>">
+                                <%= jstime(post.created_at) %>
+                            </abbr>
+                            by <%= link_to truncate(h(post.user.show_display_name), 15), user_path(post.user), :class => (post.user == @posts.first.user ? "threadauthor" : nil) %>
+                            <%= '...has {count} post(s) in total.'[(count=post.user.posts.size)==1 ? :post_count : :posts_count, number_with_delimiter(count)] %>
+                            <% if post.user.active? && logged_in? && post.editable_by?(current_user) -%>
+                                &nbsp;&nbsp;&nbsp;<%= link_to 'Edit Post...'[], edit_forum_topic_post_path(@forum, @topic, post, :page => current_page) %>
+                            <% end %>
+                            <br/>
+
+                        </div>
+
+                    </td>
+                </tr>
+
+
+            <% end %>
+        </table>
+
+        <%= pagination @posts %>
+
+        <% if logged_in? %>
+            <div id="edit"></div>
+            <% if @topic.locked? -%>
+                <p>
+                    <%= image_tag "clearbits/lock.gif", :class => "icon grey", :title => "Topic locked"[:topic_locked_title] %>
+                    <label>
+                        <%= 'This topic is locked'[:locked_topic] %>.</label>
+                </p>
+            <% else -%>
+
+
+            <% end %>
+        <% end %>
+
+
+    </div>
+</div>

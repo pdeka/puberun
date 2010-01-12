@@ -1,0 +1,19 @@
+<% content_for :right do %>
+    <div id="hide-sidebar1"></div>
+<% end %>
+
+<h2 style="text-transform:none;">Please log in</h2>
+<% form_tag session_path do -%>
+<p><label for="login">Login</label><br/>
+<%= text_field_tag 'login' %></p>
+
+<p><label for="password">Password</label><br/>
+<%= password_field_tag 'password' %></p>
+
+<p><label for="remember_me">Remember me:</label>
+<%= check_box_tag 'remember_me' %></p>
+
+<p><%= submit_tag 'Log in' %></p>
+<% end -%>
+<h2 style="text-transform:none;">Don't have a login - <u><%= link_to 'Signup', signup_path(:to => CGI.escape(request.request_uri)) %></u></h2>
+<h2 style="text-transform:none;font-size:16px;"><u><%= link_to 'Forgot your username and password - click here to get it emailed to you!', new_retrieve_user_path %></u></h2>

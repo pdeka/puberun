@@ -1,0 +1,46 @@
+<% content_for :right do %>
+
+<h5><%= 'What is Beast?'[:beast_sidebar_title] %></h5>
+
+<p>
+  <%= 'A small, light-weight forum in Rails with a scary name and a goal of around 500 lines of code when we\'re done.'[:beast_sidebar_body] %>
+</p>
+
+<% if admin? %>
+<h6><%= 'Admin'[:admin_title] %></h6>
+<p><%= link_to 'Create New Site'[:create_new_site], new_site_path, :class => "utility" %></p>
+<% end %>
+
+<% end %>
+
+<h1 style="margin-top:0;"><%= 'Sites'[:sites_title] %></h1>
+<%= pagination @sites %>
+
+<table border="0" cellspacing="0" cellpadding="0" class="wide forums">
+  <tr>
+    <th class="la" width="60%"><%= 'Site'[:forum_title] %></th>
+    <th class="la" width="15%"><%= 'Forums'[:forum_title] %></th>
+    <th class="la" width="15%"><%= 'Users'[:user_title] %></th>
+    <th class="la" width="10%">&nbsp;</th>
+  </tr>
+<% @sites.each do |site| -%>  
+  <tr>
+    <td class="c1 vat">
+      <%= link_to h(site.name), (site.default? ? forums_path : root_url(:host => site.host, :port => request.port)), :class => "title" %>
+			<%= content_tag(:small, "(#{h(site.host)})") unless site.default? -%>
+    </td>
+    <td class="c2">
+      <%= link_to pluralize(site.forums.count, 'Forum'[:forum]), forums_url(:host => site.host, :port => request.port) %>
+    </td>
+    <td class="c2">
+      <%= link_to pluralize(site.users.count, 'User'[:user]), users_url(:host => site.host, :port => request.port) %>
+    </td>
+    <td class="c2">
+      <%= link_to 'Edit'[:edit_title], edit_site_path(site), :class => "tiny", :rel => "directory" if admin? %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%= next_page @sites %>
+<%= pagination @sites %>

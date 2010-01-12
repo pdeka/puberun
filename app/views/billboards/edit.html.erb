@@ -1,0 +1,29 @@
+<% content_for :right do %>
+    <div id="hide-sidebar1"></div>
+<% end %>
+
+<h1>Editing billboard</h1>
+
+<span class="error"><%= error_messages_for :billboard %></span>
+
+<% form_for(@billboard) do |f| %>
+  <p>
+    <b>Title</b><br />
+    <%= f.text_field :title, :size => 80%>
+  </p>
+  <p>
+    <b>Position</b><br />
+    <%= f.text_field :position, :size => 5 %>
+  </p>
+  <p>
+    <b>Body</b><br />
+    <%= f.text_area :body, :cols => 80, :rows => 40 %>
+  </p>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @billboard %> |
+<%= link_to 'Back', billboards_path %>

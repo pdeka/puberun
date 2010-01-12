@@ -1,0 +1,29 @@
+<% content_for :right do %>
+    <h2 style="text-transform:lowercase">Help!</h2>
+    <p>&bull;&nbsp;<span style="color:black">Note!</span> You will recieve a mail when you sign up. Please click on the
+        link in the mail to activate your account.
+    </p>
+    <p>&bull;&nbsp;If you do not do so your account will not be activated and you will not be able to sign in</p>
+
+<% end %>
+
+<span class="error"><%= error_messages_for :user %></span>
+<% form_for :user, :url => users_path do |f| -%>
+    <p><label for="login">Login</label><br/>
+        <%= f.text_field :login %></p>
+
+    <p><label for="email">Email</label><br/>
+        <%= f.text_field :email %></p>
+
+    <p><label for="password">Password</label><br/>
+        <%= f.password_field :password %></p>
+
+    <p><label for="password_confirmation">Confirm Password</label><br/>
+        <%= f.password_field :password_confirmation %></p>
+
+    <p><%= submit_tag 'Sign up' %></p>
+
+    <p>
+    <h2 style="text-transform:none;font-size:16px;"><u><%= link_to 'Forgot your username and password - click here to get it emailed to you!', new_retrieve_user_path %></u></h2>
+    </p>
+<% end -%>

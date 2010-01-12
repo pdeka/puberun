@@ -1,0 +1,49 @@
+<% content_for :right do %>
+    <h2 style="text-transform: lowercase">Help!</h2>
+    <br>
+
+    <h4 >How to post?</h4>
+      &bull;&nbsp;Just type your mail in the boxes provided and press 'Send Mail'!
+      <br>
+      &bull;&nbsp;If you have a problem sending a mail, immediately call +61-420984257 or mail dakghar@puberun.org.au
+      <br>
+
+<% end %>
+
+
+<div class="feed">
+  <h1 class="title">Sydney Jaal</h1>
+      <% form_tag feeds_path do -%>
+
+      <div class="entry">
+        <p>
+          <span class="textboxhead">Subject</span>
+          <br>
+            <%= text_area_tag :subject, params[:subject], :rows => 1, :cols => 80 %>
+        </p>
+        <p>
+          <span class="textboxhead">Mail Body</span>
+          <br>
+            <%= text_area_tag :body, params[:body], :rows => 10, :cols => 80 %>
+        <p>
+            <%= submit_tag "Send Mail" %>
+            <br>
+            <span class="feednote">Note! You need to be in the sydney_jaal mailing list to send mails from here.</span>
+        </p>
+      <% end -%>
+
+      </div>
+
+    <% for feed in @feeds %>
+            <h2 class="title"><%= feed.title %></h2>
+            <div class="hr" ><%= feed.creator %> at <%= feed.show_pub_date %>&nbsp;&nbsp;&nbsp;
+                <a href="<%=feed.link%>" target="_blank">read more ...</a>
+            </div>
+            <div class="entry">
+                <p><%= feed.description %></p>
+            </div>
+    <% end %>
+</div>
+
+
+

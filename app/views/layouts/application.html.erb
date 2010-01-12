@@ -1,0 +1,31 @@
+<%= render :partial => "layouts/head" %>
+
+<div id="page">
+
+    <div id="content">
+            <%= content_tag 'p', h(flash[:notice]), :class => 'message' if flash[:notice] %>
+            <%= content_tag 'p', h(flash[:error]), :class => 'error' if flash[:error] %>
+
+        <%= yield %>
+    </div>
+
+    <div id="sidebar1" class="sidebar">
+        <%= yield :right %>
+    </div>
+
+    <div style="clear: both;">&nbsp;</div>
+
+</div>
+
+<hr/>
+
+<div id="footer">
+    <p>
+        &copy; 2008 Puberun.org.au &nbsp;&bull;&nbsp; All Rights Reserved &nbsp;&bull;&nbsp; Designed by
+        <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>
+        <%= 'Powered by'[:powered_by] %> <a href="http://beast.caboo.se/">Beast</a><br/>
+    </p>
+    <br style="clear:both;"/>
+</div>
+</body>
+</html>

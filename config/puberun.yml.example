@@ -1,0 +1,5 @@
+blog: http://localhost:3000/posts
+mailer_from: dakghar@puberun.org.au
+media_mailer_recipient: prabin_test_group@yahoogroups.com
+default_host: puberun.org.au
+

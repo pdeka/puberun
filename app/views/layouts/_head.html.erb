@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><%= 'NE in Australia!'[:beast_title] %></title>
+    <%= stylesheet_link_tag 'style', 'menu', 'feed', 'music', 'photo' %>
+    <%= javascript_include_tag "charcounter", "jquery-1.2.2.pack", "htmltooltip",
+            "prototype", "effects", "lowpro", "time", "application", :cache => 'beast' %>
+    <% unless @feed_icons.blank? -%>
+        <% @feed_icons.each do |feed| -%>
+            <%= auto_discovery_link_tag :atom, feed[:url], :title => "Subscribe to '#{feed[:title]}'" %>
+        <% end -%>
+    <% end -%>
+    <link rel="search" type="application/opensearchdescription+xml" href="http://<%= request.host_with_port %>/open_search.xml"/>
+</head>
+<body>
+
+<div id="header">
+    <div id="menu">
+            <%= link_to 'Home'[:forums_title], notes_path %>
+            <%= link_to 'Billboard', billboards_path%>
+            <%= link_to 'Blog', redirect_to_blog(current_user) %>
+            <%= link_to 'Photos', new_photo_path%>
+            <%= link_to 'Videos', new_video_path%>
+            <%= link_to 'Music', new_music_path%>
+            <%= link_to 'Forums'[:forums_title], "#{forums_path}/puberun-forum" %>
+
+            <% if logged_in? -%>
+                <%= link_to 'Settings'[:settings_title], settings_path %>
+                <%= link_to 'Logout'[:logout_title], logout_path %>
+            <% else -%>
+                <%= link_to 'Login'[:login_action], login_path(:to => CGI.escape(request.request_uri)) %>
+                <%= link_to 'Signup'[:signup_action], signup_path(:to => CGI.escape(request.request_uri)) %>
+            <% end -%>
+
+    </div>
+    <div id="logo">
+
+        <% if logged_in? -%>
+            <object width="100%" height="170">
+                <param name="movie" value="http://www.slideoo.com/slider.swf">
+                <param name="wmode" value="transparent">
+                <param name="flashvars" value="setId=72157606639415597&size=_m&max=25&userid=29467269@N08&setname=Banner&randomize=1">
+                <embed src="http://www.slideoo.com/slider.swf" type="application/x-shockwave-flash" wmode="transparent" flashvars="setId=72157606639415597&size=_m&max=25&userid=29467269@N08&setname=Banner&randomize=1" width="100%" height="170"/>
+            </object>
+            <img style="visibility:hidden;width:0px;height:0px;" border=0 width=0 height=0 src="http://counters.gigya.com/wildfire/IMP/CXNID=2000002.0NXC/bT*xJmx*PTEyMTgzMjgxMjg5NTMmcHQ9MTIxODMyODEzNDkyMSZwPTU*NDMxJmQ9Jm49Jmc9MQ==.gif"/>
+        <% else -%>
+
+            <object width="100%" height="170">
+                <param name="movie" value="http://www.slideoo.com/slider.swf">
+                <param name="wmode" value="transparent">
+                <param name="flashvars" value="setId=72157607217923193&size=_m&max=50&userid=29467269@N08&setname=ne&randomize=1">
+                <embed src="http://www.slideoo.com/slider.swf" type="application/x-shockwave-flash" wmode="transparent" flashvars="setId=72157607217923193&size=_m&max=50&userid=29467269@N08&setname=ne&randomize=1" width="100%" height="170"/>
+            </object>
+            <img style="visibility:hidden;width:0px;height:0px;" border=0 width=0 height=0 src="http://counters.gigya.com/wildfire/IMP/CXNID=2000002.0NXC/bT*xJmx*PTEyMjEwNjAwMzYwMTUmcHQ9MTIyMTA2MDA2MzYwOSZwPTU*NDMxJmQ9Jm49Jmc9MSZ*PSZvPTRiZTc1MDBjNTNjMTQwYTliOWMwYzM1OTM*MWEzN2U4.gif"/>
+        <% end -%>
+
+    </div>
+
+</div>
+</body>
+
+</html>
